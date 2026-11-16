@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-main: #f0f7ff;
+    --bg-card: rgba(255, 255, 255, 0.94);
+    --border-card: rgba(186, 230, 253, 0.8);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --shadow-soft: 0 10px 30px -5px rgba(14, 165, 233, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+    --accent-glow: rgba(6, 182, 212, 0.2);
+  }
+
+  .dark {
+    --bg-main: #080d16;
+    --bg-card: rgba(15, 23, 42, 0.95);
+    --border-card: rgba(30, 41, 59, 0.9);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --shadow-soft: 0 12px 36px -5px rgba(0, 0, 0, 0.7), 0 0 20px rgba(6, 182, 212, 0.15);
+    --accent-glow: rgba(6, 182, 212, 0.3);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+}
+
+/* Light & Dark Theme Glass Panel Utilities */
+.med-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.med-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.med-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2);
+  border-color: rgba(6, 182, 212, 0.6);
+}
+
+.dark .med-card:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.25);
+  border-color: rgba(6, 182, 212, 0.6);
+}
+
+/* Soft MedTech Gradient Buttons */
+.btn-soft-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
+  transition: all 0.25s ease;
+}
+
+.btn-soft-primary:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #0891b2 100%);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-soft-secondary {
+  background: rgba(224, 242, 254, 0.8);
+  color: #0369a1;
+  border: 1px solid rgba(186, 230, 253, 0.9);
+  transition: all 0.25s ease;
+}
+
+.dark .btn-soft-secondary {
+  background: rgba(30, 41, 59, 0.9);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-soft-secondary:hover {
+  background: rgba(186, 230, 253, 1);
+  transform: translateY(-1px);
+}
+
+.dark .btn-soft-secondary:hover {
+  background: rgba(51, 65, 85, 1);
+  color: #7dd3fc;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}
+
+/* Scanning Beam Animation */
+@keyframes scan-beam {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { top: 98%; opacity: 0.8; }
+}
+
+.animate-scan-beam {
+  animation: scan-beam 2s ease-in-out infinite alternate;
+}
+
+/* =============================================================================
+   3D PERSPECTIVE & 3D THEME ANIMATIONS (Preserves Original Color Palette)
+   ============================================================================= */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* 3D Depth Card */
+.med-card-3d {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 15px 35px -5px rgba(14, 165, 233, 0.12), 0 5px 15px rgba(0, 0, 0, 0.04);
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.dark .med-card-3d {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(6, 182, 212, 0.15);
+}
+
+.med-card-3d:hover {
+  transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.25), 0 0 25px rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.7);
+}
+
+.dark .med-card-3d:hover {
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px rgba(6, 182, 212, 0.35);
+  border-color: rgba(6, 182, 212, 0.8);
+}
+
+/* 3D Floating Animation */
+@keyframes float-3d {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+  }
+  75% {
+    transform: translateY(4px) rotateX(-2deg) rotateY(2deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
+/* 3D Holographic Orbit Ring */
+@keyframes orbit-3d {
+  0% {
+    transform: rotateZ(0deg) rotateX(65deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg) rotateX(65deg) rotateY(0deg);
+  }
+}
+
+.animate-orbit-3d {
+  animation: orbit-3d 12s linear infinite;
+}
+
+/* 3D Pulse Glow Ring */
+@keyframes pulse-glow-3d {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 15px rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.6), inset 0 0 30px rgba(6, 182, 212, 0.3);
+    border-color: rgba(6, 182, 212, 0.9);
+  }
+}
+
+.animate-pulse-glow-3d {
+  animation: pulse-glow-3d 3s ease-in-out infinite;
+}
+
+/* 3D Isometric MRI Grid Plate */
+.mri-grid-3d {
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transform: perspective(600px) rotateX(45deg);
+  transform-origin: center top;
+}
+
+
+/* =============================================================================
+   Shared tokens for the Brain Gym / Risk Plan / history tools (original palette)
+   ============================================================================= */
+@source inline("{text,bg,border}-{tide,synapse,amber,rose}{,-soft}");
+
+:root {
+  --synapse: #0891b2; --synapse-soft: #cffafe;
+  --tide: #059669;    --tide-soft: #d1fae5;
+  --amber: #d97706;   --amber-soft: #fef3c7;
+  --rose: #dc2626;    --rose-soft: #fee2e2;
+  --ink: #0f172a; --ink-soft: #475569; --muted: #64748b;
+  --line: rgba(186, 230, 253, 0.8);
+  --surface: #ffffff; --surface-2: #f0f9ff; --paper: #f0f7ff;
+}
+.dark {
+  --synapse: #22d3ee; --synapse-soft: rgba(6, 182, 212, 0.15);
+  --tide: #34d399;    --tide-soft: rgba(16, 185, 129, 0.15);
+  --amber: #fbbf24;   --amber-soft: rgba(245, 158, 11, 0.15);
+  --rose: #f87171;    --rose-soft: rgba(239, 68, 68, 0.15);
+  --ink: #f8fafc; --ink-soft: #cbd5e1; --muted: #94a3b8;
+  --line: #1e293b;
+  --surface: #0f172a; --surface-2: #111a2e; --paper: #080d16;
+}
+
+@theme inline {
+  --color-synapse: var(--synapse); --color-synapse-soft: var(--synapse-soft);
+  --color-tide: var(--tide); --color-tide-soft: var(--tide-soft);
+  --color-amber: var(--amber); --color-amber-soft: var(--amber-soft);
+  --color-rose: var(--rose); --color-rose-soft: var(--rose-soft);
+  --color-ink: var(--ink); --color-ink-soft: var(--ink-soft); --color-muted: var(--muted);
+  --color-line: var(--line); --color-surface: var(--surface); --color-surface-2: var(--surface-2); --color-paper: var(--paper);
+  --font-display: 'Inter', system-ui, sans-serif;
+}
+
+@layer components {
+  .panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-soft);
+    border-radius: 1.5rem;
+  }
+  .panel-flat { background: var(--surface-2); border-radius: 1rem; }
+  .field {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    padding: 0.6rem 0.85rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+  }
+  .field:focus { outline: none; border-color: #06b6d4; box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2); }
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid #06b6d4; outline-offset: 2px; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+/* Printable clinical report */
+.print-only { display: none; }
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .med-panel, .med-card, .med-card-3d, .panel { box-shadow: none !important; backdrop-filter: none !important; background: #fff !important; break-inside: avoid; transform: none !important; }
+  canvas { max-height: 260px; }
+}
+
+/* Large interactive panels (forms, tables) keep the 3D look but must not tilt
+   under the cursor: moving buttons made clicks near panel edges miss. */
+.med-card-3d.no-tilt:hover,
+.dark .med-card-3d.no-tilt:hover { transform: none; }

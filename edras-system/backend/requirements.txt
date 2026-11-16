@@ -1,0 +1,9 @@
+flask>=2.0.0
+flask-cors>=3.0.0
+flask-sqlalchemy>=3.0.0
+pyjwt>=2.4.0
+cryptography>=3.4.0
+werkzeug>=2.0.0
+torch
+numpy
+reportlab

@@ -1,0 +1,16 @@
+# Render Blueprint: New > Blueprint > pick this repo. Creates the EDRAS API on the free plan.
+services:
+  - type: web
+    name: edras-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./edras-system/deploy/Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: FLASK_ENV
+        value: prod
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
