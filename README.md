@@ -16,6 +16,26 @@
 
 ---
 
+
+## 🚀 Live Demo
+
+| | Link |
+|---|---|
+| **Web app** | https://fabulous-pika-b8b169.netlify.app |
+| **Backend API** | https://edras-backend.onrender.com |
+| **Train the CNN** | [`training/EDRAS_Train_CNN.ipynb`](training/EDRAS_Train_CNN.ipynb) (Google Colab, T4 GPU) |
+
+> Free hosting: the API sleeps after 15 min idle and takes about a minute to wake ("Waking AI…" badge).
+
+### Model status (honest numbers)
+- **Current model:** Random Forest + Gradient Boosting on 17 image statistics. **68.4% test accuracy.**
+- **Next model:** EfficientNet-B0 CNN trained with a **patient-wise split** (no patient in both train and test).
+  The backend switches to it automatically when `dementia_cnn.onnx` + `dementia_cnn_meta.json` are placed in
+  `edras-system/ai_engine/models/`, and the dashboard reports its measured test accuracy.
+- For reliable results upload a **single axial T1 MRI slice**; multi-slice figures and FLAIR images trigger a warning.
+
+---
+
 ## 📌 Table of Contents
 - [Executive Overview](#-executive-overview)
 - [System Architecture](#-system-architecture)
