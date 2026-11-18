@@ -7,3 +7,4 @@ werkzeug>=2.0.0
 torch
 numpy
 reportlab
+onnxruntime>=1.18

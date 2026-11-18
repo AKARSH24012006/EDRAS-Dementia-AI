@@ -37,7 +37,7 @@ async function imageFeatures(file) {
       if (dx * dx + dy * dy < (N * 0.18) ** 2) { cN++; if (g < 60) cDark++; }
     }
     const n = N * N, mean = sum / n;
-    return { mean, variance: sq / n - mean * mean, darkRatio: dark / Math.max(brain, 1), centreDark: cDark / Math.max(cN, 1) };
+    return { mean, variance: sq / n - mean * mean, darkRatio: dark / Math.max(brain, 1), centreDark: cDark / Math.max(cN, 1), aspect: img.width / Math.max(img.height, 1) };
   } finally { URL.revokeObjectURL(url); }
 }
 
@@ -64,6 +64,9 @@ export async function demoAnalyze({ file, patientName, patientAge, gender }) {
     },
     class_probabilities: probabilities(risk),
     source: 'demo',
+    input_warning: f && (f.aspect > 1.6 || f.aspect < 0.4)
+      ? 'Image looks like several slices or a cropped figure. Upload a single axial T1 MRI slice for a reliable result.'
+      : null,
   };
 }
 

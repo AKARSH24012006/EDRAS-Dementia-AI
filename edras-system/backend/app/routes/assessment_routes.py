@@ -81,6 +81,8 @@ def analyze_mri():
             'status': 'success',
             'scan': mri_record.to_dict(),
             'class_probabilities': pred.get('class_probabilities', {}),
+            'model': pred.get('model', 'ensemble'),
+            'input_warning': pred.get('input_warning'),
             'biomarker_features': pred.get('features', {}),
             'message': f'MRI Scan analyzed successfully. Diagnosis: {stage} ({risk_score:.1f}% risk score).'
         }), 200
@@ -123,7 +125,8 @@ def get_dashboard_stats():
                 'total_scans_analyzed': 0,
                 'high_risk_count': 0,
                 'avg_dementia_risk_index': 0.0,
-                'model_accuracy': 92.6,
+                'model_accuracy': ai_service_instance.model_accuracy(),
+            'model_name': ai_service_instance.model_name(),
                 'stage_distribution': [
                     {'name': 'Non Demented', 'count': 0, 'color': '#10b981'},
                     {'name': 'Very Mild Dementia', 'count': 0, 'color': '#3b82f6'},
@@ -144,7 +147,8 @@ def get_dashboard_stats():
             'total_scans_analyzed': total_scans,
             'high_risk_count': high_risk_count,
             'avg_dementia_risk_index': round(avg_risk, 1),
-            'model_accuracy': 92.6,
+            'model_accuracy': ai_service_instance.model_accuracy(),
+            'model_name': ai_service_instance.model_name(),
             'stage_distribution': [
                 {'name': 'Non Demented', 'count': non_demented, 'color': '#10b981'},
                 {'name': 'Very Mild Dementia', 'count': very_mild, 'color': '#3b82f6'},

@@ -24,6 +24,7 @@ export default function ScanAnalysis({ theme }) {
   const [source, setSource] = useState(null);
   const [previous, setPrevious] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [inputWarning, setInputWarning] = useState(null);
 
   // Free the old preview image when a new one is chosen (was leaking object URLs).
   useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
@@ -70,6 +71,7 @@ export default function ScanAnalysis({ theme }) {
       setResult(data.scan);
       setProbs(data.class_probabilities || probabilities(data.scan.dementia_risk_score));
       setSource(src);
+      setInputWarning(data.input_warning || null);
       setAnalyzing(false);
     };
 
@@ -334,6 +336,12 @@ export default function ScanAnalysis({ theme }) {
                   <span>100% (Severe Dementia)</span>
                 </div>
               </div>
+
+              {inputWarning && (
+                <p role="alert" className="text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-2xl px-4 py-2.5 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />{inputWarning}
+                </p>
+              )}
 
               {source === 'demo' && (
                 <p className="text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-2xl px-4 py-2.5 flex items-center gap-2">
