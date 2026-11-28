@@ -4,7 +4,7 @@ file_path = "EDRAS_Research_Paper.md"
 
 with open(file_path, "r", encoding="utf-8") as f:
     content = f.read()
-
+#all the points listed
 # 1. Inject The Fundamental Basis of Our Research
 basis_text = """
 ### 2.5 The Fundamental Basis of Our Research and Clinical Motivation
